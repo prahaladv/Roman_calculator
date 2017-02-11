@@ -14,7 +14,8 @@ AC_CONFIG_AUX_DIR([build-aux])
 
 
 
-
+# Added by me - Prahalad
+# Thanks to : https://github.com/vmt/udis86/issues/6
 m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 
 
@@ -31,6 +32,37 @@ AC_PROG_CC
 AC_PROG_LIBTOOL
 
 # Checks for libraries.
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Added by me - Prahalad
+# Thanks to : https://sourceforge.net/p/check/mailman/message/32835594/
+AC_CHECK_LIB(m, floor)
+AC_CHECK_LIB(rt, setitimer)
+AC_CHECK_LIB(pthread, pthread_create)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # This macro is defined in check.m4 and tests if check.h and
 # libcheck.a are installed in your system. It sets CHECK_CFLAGS and
