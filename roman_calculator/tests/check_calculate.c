@@ -56,6 +56,18 @@ START_TEST(test_calculate_negative_diff)
 }
 END_TEST
 
+/* Test 4 */
+START_TEST(test_check_if_roman_string_fails_if_passed_null)
+{
+    int iRetVal = FAILURE;
+
+    /* Should take in one input string and return appropriate output */
+    iRetVal = check_if_roman_string(NULL);
+
+    ck_assert_int_eq(iRetVal, INVALID_INPUT);
+}
+END_TEST
+
 Suite * calculate_suite(void)
 {
     Suite * s;
@@ -64,8 +76,11 @@ Suite * calculate_suite(void)
     /* Core test case */
     tc_core = tcase_create("Core");
 
-    tcase_add_test(tc_core, test_calculate_diff);
-    tcase_add_test(tc_core, test_calculate_negative_diff);
+    //tcase_add_test(tc_core, test_calculate_diff);
+    //tcase_add_test(tc_core, test_calculate_negative_diff);
+
+    tcase_add_test(tc_core, test_check_if_roman_string_fails_if_passed_null);
+
     suite_add_tcase(s, tc_core);
 
     return s;
