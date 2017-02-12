@@ -13,6 +13,23 @@ int check_if_roman_string(char * pcStr)
         return iRetVal;
     }
 
+    int i = 0, iLen = strlen(pcStr);
+
+    if(strstr(pcStr, "MMMMM") != NULL)
+    {
+        iRetVal = INVALID_INPUT;
+        return iRetVal;
+    }
+
+    for(i = 0; i < iLen; i++)
+    {
+        if(pcStr[i] != 'I' && pcStr[i] != 'V' && pcStr[i] != 'X' && pcStr[i] != 'L' &&
+                pcStr[i] != 'C' && pcStr[i] != 'D' && pcStr[i] != 'M')
+        {
+            iRetVal = FAILURE;
+            return iRetVal;
+        }
+    }
     return iRetVal;
 }
 
