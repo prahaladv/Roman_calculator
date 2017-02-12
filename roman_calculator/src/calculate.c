@@ -45,7 +45,34 @@ int find_value_of_string(char * acNum, int * piVal)
         return iRetVal;
     }
 
-    return SUCCESS;
+    int i = 0, iLen = strlen(acNum), iRes = 0;
+
+    for(i = 0; i < iLen; i++)
+    {
+        if(acNum[i] == 'M')
+            iRes += 1000;
+        else if(acNum[i] == 'D')
+            iRes += 500;
+        else if(acNum[i] == 'C')
+            iRes += 100;
+        else if(acNum[i] == 'L')
+            iRes += 50;
+        else if(acNum[i] == 'X')
+            iRes += 10;
+        else if(acNum[i] == 'V')
+            iRes += 5;
+        else if(acNum[i] == 'I')
+            iRes += 1;
+        else
+        {
+            * piVal = -1;
+            iRetVal = INVALID_INPUT;
+            return iRetVal;
+        }
+    }
+    *piVal = iRes;
+
+    return iRetVal;
 }
 
 int convert_to_roman_string(int iNum, char * pcNum)
