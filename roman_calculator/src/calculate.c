@@ -3,10 +3,17 @@
 #include <string.h>
 #include "calculate.h"
 
-int check_if_roman_string(char * pcNum)
+int check_if_roman_string(char * pcStr)
 {
-    /* Since I know I have provided the right user input for unit testing */
-    return SUCCESS;
+    int iRetVal = SUCCESS;
+
+    if(pcStr == NULL || !strcmp(pcStr, ""))
+    {
+        iRetVal = INVALID_INPUT;
+        return iRetVal;
+    }
+
+    return iRetVal;
 }
 
 int find_value_of_string(char * acNum, int * piVal)
