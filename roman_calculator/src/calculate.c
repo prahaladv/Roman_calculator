@@ -118,7 +118,7 @@ int calculate_diff(char * pcNum1, char * pcNum2, char * pcDiff)
 
     printf("\nNumber 1 : %d, Number 2: %d\n", iNum1, iNum2);
 
-    iDiff = iNum1 - iNum2;
+    iDiff = abs(iNum1 - iNum2);
 
     printf("\nDifference: %d\n", iDiff);
 
@@ -126,6 +126,11 @@ int calculate_diff(char * pcNum1, char * pcNum2, char * pcDiff)
     if(iRetVal != SUCCESS)
     {
         return iRetVal;
+    }
+
+    if(iNum1 < iNum2)
+    {
+        iRetVal = NEGATIVE_DIFFERENCE;
     }
 
     return iRetVal;
