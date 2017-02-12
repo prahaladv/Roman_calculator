@@ -35,10 +35,15 @@ int check_if_roman_string(char * pcStr)
 
 int find_value_of_string(char * acNum, int * piVal)
 {
-    if(piVal != NULL && !strcmp(acNum, "I"))
-        *piVal = 1;
-    else if(piVal != NULL && !strcmp(acNum, "III"))
-        *piVal = 3;
+    int iRetVal = SUCCESS;
+
+    if(acNum == NULL || !strcmp(acNum, "") || piVal == NULL)
+    {
+        if(piVal != NULL)
+            *piVal = -1;
+        iRetVal = INVALID_INPUT;
+        return iRetVal;
+    }
 
     return SUCCESS;
 }
