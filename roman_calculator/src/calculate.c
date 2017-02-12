@@ -74,3 +74,8 @@ int calculate_sum(char * pcNum1, char * pcNum2, char * pcSum)
 
     return iRetVal;
 }
+
+int calculate_diff(char * pNum1, char * pcNum2, char * pcDiff)
+{
+    return 0;
+}
