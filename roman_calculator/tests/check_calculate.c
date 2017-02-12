@@ -139,6 +139,21 @@ START_TEST(test_value_of_string_on_passing_a_valid_string_without_subtractibles)
 }
 END_TEST
 
+/* Test 10 */
+START_TEST(test_value_of_string_on_passing_a_valid_string_with_subtractibles)
+{
+    int iRetVal = SUCCESS;
+    int iValue = 0;
+
+    /* Should take in one input string and pointer to an int variable
+     * and return appropriate output */
+    iRetVal = find_value_of_string("MDCXLIV", &iValue);
+
+    ck_assert_int_eq(iRetVal, SUCCESS);
+    ck_assert_int_eq(iValue, 1644);
+}
+END_TEST
+
 Suite * calculate_suite(void)
 {
     Suite * s;
@@ -158,6 +173,7 @@ Suite * calculate_suite(void)
     //tcase_add_test(tc_core, test_value_of_string_fails_if_passed_null_int_pointer);
 
     tcase_add_test(tc_core, test_value_of_string_on_passing_a_valid_string_without_subtractibles);
+    tcase_add_test(tc_core, test_value_of_string_on_passing_a_valid_string_with_subtractibles);
 
     suite_add_tcase(s, tc_core);
 
