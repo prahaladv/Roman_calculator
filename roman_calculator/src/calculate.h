@@ -7,6 +7,7 @@
 #define INVALID_NUM_1 2
 #define INVALID_NUM_2 3
 #define OUT_OF_BOUNDS 4
+#define NEGATIVE_DIFFERENCE 5
 
 #define MAX_LEN 40
 

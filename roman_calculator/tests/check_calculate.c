@@ -38,6 +38,24 @@ START_TEST(test_calculate_diff)
 }
 END_TEST
 
+/* Test 3 */
+START_TEST(test_calculate_negative_diff)
+{
+    int iRetVal = FAILURE;
+    char * pcInput1 = "I";
+    char * pcInput2 = "III";
+
+    /* Assuming the max length of a Roman string will be MAX_LEN = 40 */
+    char acDiff[MAX_LEN] = {0};
+
+    /* Should take in two input strings and return output in acSum - a valid buffer */
+    iRetVal = calculate_diff(pcInput1, pcInput2, acDiff);
+
+    ck_assert_int_eq(iRetVal, NEGATIVE_DIFFERENCE);
+    ck_assert_str_eq(acDiff, "II");
+}
+END_TEST
+
 Suite * calculate_suite(void)
 {
     Suite * s;
@@ -47,6 +65,7 @@ Suite * calculate_suite(void)
     tc_core = tcase_create("Core");
 
     tcase_add_test(tc_core, test_calculate_diff);
+    tcase_add_test(tc_core, test_calculate_negative_diff);
     suite_add_tcase(s, tc_core);
 
     return s;
@@ -61,7 +80,7 @@ int main(void)
     s = calculate_suite();
     sr = srunner_create(s);
 
-    srunner_run_all(sr, CK_NORMAL);
+    srunner_run_all(sr, CK_VERBOSE);
     number_failed = srunner_ntests_failed(sr);
     srunner_free(sr);
     return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
