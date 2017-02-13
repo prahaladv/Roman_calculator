@@ -3,6 +3,14 @@
 #include <string.h>
 #include "calculate.h"
 
+#define M_VAL 1000
+#define D_VAL 500
+#define C_VAL 100
+#define L_VAL 50
+#define X_VAL 10
+#define V_VAL 5
+#define I_VAL 1
+
 int check_if_roman_string(char * pcStr)
 {
     int iRetVal = SUCCESS;
@@ -66,19 +74,19 @@ int find_value_of_string(char * acNum, int * piVal)
     for(i = 0; i < iLen; i++)
     {
         if(acNum[i] == 'M')
-            iRes += 1000;
+            iRes += M_VAL;
         else if(acNum[i] == 'D')
-            iRes += 500;
+            iRes += D_VAL;
         else if(acNum[i] == 'C')
-            iRes += 100;
+            iRes += C_VAL;
         else if(acNum[i] == 'L')
-            iRes += 50;
+            iRes += L_VAL;
         else if(acNum[i] == 'X')
-            iRes += 10;
+            iRes += X_VAL;
         else if(acNum[i] == 'V')
-            iRes += 5;
+            iRes += V_VAL;
         else if(acNum[i] == 'I')
-            iRes += 1;
+            iRes += I_VAL;
         else
         {
             * piVal = -1;

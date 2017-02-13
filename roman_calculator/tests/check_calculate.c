@@ -154,6 +154,24 @@ START_TEST(test_value_of_string_on_passing_a_valid_string_with_subtractibles)
 }
 END_TEST
 
+/* Test 11 */
+START_TEST(test_find_occurances_and_subtract_on_passing_a_valid_string_with_IX)
+{
+    int iRetVal = SUCCESS;
+
+    /* Since MDCIV is passed from find_value_of_string. This function would
+     * have passed a simple summation of Roman characters. */
+    int iValue = 1606;
+
+    /* Should take in one input string and pointer to an int variable
+     * and return appropriate output */
+    iRetVal = find_occurances_and_subtract("MDCIV", &iValue);
+
+    ck_assert_int_eq(iRetVal, SUCCESS);
+    ck_assert_int_eq(iValue, 1604);
+}
+END_TEST
+
 Suite * calculate_suite(void)
 {
     Suite * s;
@@ -172,8 +190,10 @@ Suite * calculate_suite(void)
     //tcase_add_test(tc_core, test_value_of_string_fails_if_passed_empty_string);
     //tcase_add_test(tc_core, test_value_of_string_fails_if_passed_null_int_pointer);
 
-    tcase_add_test(tc_core, test_value_of_string_on_passing_a_valid_string_without_subtractibles);
-    tcase_add_test(tc_core, test_value_of_string_on_passing_a_valid_string_with_subtractibles);
+    //tcase_add_test(tc_core, test_value_of_string_on_passing_a_valid_string_without_subtractibles);
+    //tcase_add_test(tc_core, test_value_of_string_on_passing_a_valid_string_with_subtractibles);
+
+    tcase_add_test(tc_core, test_find_occurances_and_subtract_on_passing_a_valid_string_with_IX);
 
     suite_add_tcase(s, tc_core);
 
