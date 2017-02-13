@@ -11,6 +11,8 @@
 #define V_VAL 5
 #define I_VAL 1
 
+char * subtractibles[6] = {"IV", "IX", "XL", "XC", "CD", "CM"};
+
 int check_if_roman_string(char * pcStr)
 {
     int iRetVal = SUCCESS;
@@ -41,26 +43,35 @@ int check_if_roman_string(char * pcStr)
     return iRetVal;
 }
 
-int find_occurances_and_subtract(char * s, int * sum)
+int find_occurances_and_subtract(char * s, char * subtractible, int * sum)
 {
     int iRetVal = SUCCESS;
-    if(s == NULL || !strcmp(s, "") || sum == NULL)
+
+    if(s == NULL || !strcmp(s, "") || subtractible == NULL ||
+            !strcmp(subtractible, "") || sum == NULL)
     {
         iRetVal = INVALID_INPUT;
         return iRetVal;
     }
 
-    int iLen = strlen(s), sub = 2;
+    int iLen = strlen(s), sub = 0;
     char acStr[iLen + 1], * pcPtr = acStr;
 
     strcpy(acStr, s);
+
+    if( (strcmp(subtractible, "IV") == 0) || (strcmp(subtractible, "IX") == 0) )
+        sub = 2;
+    else if( (strcmp(subtractible, "XL") == 0) || (strcmp(subtractible, "XC") == 0) )
+        sub = 20;
+    else if( (strcmp(subtractible, "CD") == 0) || (strcmp(subtractible, "CM") == 0) )
+        sub = 200;
 
     while(pcPtr != NULL)
     {
         if(!strcmp(pcPtr, ""))
             return iRetVal;
 
-        pcPtr = strstr(pcPtr, "IV");
+        pcPtr = strstr(pcPtr, subtractible);
 
         if(pcPtr != NULL)
         {
@@ -117,11 +128,14 @@ int find_value_of_string(char * acNum, int * piVal)
      * Similarly if it is XC, simple summing would have yeilded 110 but it is
      * 90. */
 
-    iRetVal = find_occurances_and_subtract(acNum, &iRes);
-    if(iRetVal != SUCCESS)
+    for(i = 0; i < 6; i++)
     {
-        *piVal = -1;
-        return iRetVal;
+        iRetVal = find_occurances_and_subtract(acNum, subtractibles[i], &iRes);
+        if(iRetVal != SUCCESS)
+        {
+            *piVal = -1;
+            return iRetVal;
+        }
     }
 
     *piVal = iRes;

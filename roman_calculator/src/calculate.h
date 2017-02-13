@@ -18,6 +18,6 @@ int check_if_roman_string(char * pcStr);
 int find_value_of_string(char * acNum, int * piVal);
 int convert_to_roman_string(int iNum, char * pcNum);
 int calculate_diff(char * pcNum1, char * pcNum2, char * pcDiff);
-int find_occurances_and_subtract(char * s, int * sum);
+int find_occurances_and_subtract(char * s, char * subtractible, int * sum);
 
 #endif /* CALCULATE_H */
