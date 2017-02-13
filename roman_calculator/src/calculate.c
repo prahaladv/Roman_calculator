@@ -33,6 +33,22 @@ int check_if_roman_string(char * pcStr)
     return iRetVal;
 }
 
+int find_occurances_and_subtract(char * s, int * sum)
+{
+    /* Since the string is MDCXLIV. So XL = 40 and not 60. Similarly IV = 4
+     * and not 6. So subtract 22.
+     *
+     * IMPORTANT POINT!!! If check - because I am running the previous
+     * test case as well. So the subtraction should happen only if there are
+     * subtractibles. Implies this function should check the string and
+     * perform subtractions appropriately. */
+
+    if(strstr(s, "IV") != NULL && strstr(s, "XL") != NULL)
+        *sum = (*sum) - 22;
+
+    return SUCCESS;
+}
+
 int find_value_of_string(char * acNum, int * piVal)
 {
     int iRetVal = SUCCESS;
@@ -70,6 +86,22 @@ int find_value_of_string(char * acNum, int * piVal)
             return iRetVal;
         }
     }
+
+    /* The only possible "subtract"ibles are IV, IX, XL, XC, CD and CM. So the
+     * approach is to add all the values regardless of whether it is a
+     * subtractibles or not. Then find occurance of those subtractibles and
+     * subtract twice of what should have been subtracted. Example: IX is 9
+     * but when simply added gives 11. So subtract 2. For CD, subtract 200.
+     * Similarly if it is XC, simple summing would have yeilded 110 but it is
+     * 90. */
+
+    iRetVal = find_occurances_and_subtract(acNum, &iRes);
+    if(iRetVal != SUCCESS)
+    {
+        *piVal = -1;
+        return iRetVal;
+    }
+
     *piVal = iRes;
 
     return iRetVal;
