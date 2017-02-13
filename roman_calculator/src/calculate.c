@@ -43,18 +43,32 @@ int check_if_roman_string(char * pcStr)
 
 int find_occurances_and_subtract(char * s, int * sum)
 {
-    /* Since the string is MDCXLIV. So XL = 40 and not 60. Similarly IV = 4
-     * and not 6. So subtract 22.
-     *
-     * IMPORTANT POINT!!! If check - because I am running the previous
-     * test case as well. So the subtraction should happen only if there are
-     * subtractibles. Implies this function should check the string and
-     * perform subtractions appropriately. */
+    int iRetVal = SUCCESS;
+    if(s == NULL || !strcmp(s, "") || sum == NULL)
+    {
+        iRetVal = INVALID_INPUT;
+        return iRetVal;
+    }
 
-    if(strstr(s, "IV") != NULL && strstr(s, "XL") != NULL)
-        *sum = (*sum) - 22;
+    int iLen = strlen(s), sub = 2;
+    char acStr[iLen + 1], * pcPtr = acStr;
 
-    return SUCCESS;
+    strcpy(acStr, s);
+
+    while(pcPtr != NULL)
+    {
+        if(!strcmp(pcPtr, ""))
+            return iRetVal;
+
+        pcPtr = strstr(pcPtr, "IV");
+
+        if(pcPtr != NULL)
+        {
+            pcPtr += 2; //Skip the two subtractible characters as well
+            *sum = (*sum) - sub;
+        }
+    }
+    return iRetVal;
 }
 
 int find_value_of_string(char * acNum, int * piVal)
