@@ -85,6 +85,7 @@ int find_occurances_and_subtract(char * s, char * subtractible, int * sum)
 int find_value_of_string(char * acNum, int * piVal)
 {
     int iRetVal = SUCCESS;
+    char acVerifier[MAX_LEN] = {0};
 
     if(acNum == NULL || !strcmp(acNum, "") || piVal == NULL)
     {
@@ -138,7 +139,22 @@ int find_value_of_string(char * acNum, int * piVal)
         }
     }
 
-    *piVal = iRes;
+    iRetVal = convert_to_roman_string(iRes, acVerifier);
+    if(iRetVal != SUCCESS)
+    {
+        *piVal = -1;
+        return iRetVal;
+    }
+
+    if(strcmp(acVerifier, acNum) == 0)
+    {
+        * piVal = iRes;
+    }
+    else
+    {
+        * piVal = -1;
+        iRetVal = INVALID_INPUT;
+    }
 
     return iRetVal;
 }

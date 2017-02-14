@@ -245,6 +245,11 @@ START_TEST(test_find_value_of_string_for_invalid_roman_input)
 
     ck_assert_int_eq(iRetVal, INVALID_INPUT);
     ck_assert_int_eq(iValue, -1);
+
+    iRetVal = find_value_of_string("MDCIIII", &iValue);
+
+    ck_assert_int_eq(iRetVal, INVALID_INPUT);
+    ck_assert_int_eq(iValue, -1);
 }
 END_TEST
 
