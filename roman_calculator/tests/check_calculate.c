@@ -213,6 +213,27 @@ START_TEST(test_convert_to_roman_string_for_invalid_and_out_of_bounds_input)
 }
 END_TEST
 
+/* Test 14 */
+START_TEST(test_convert_to_roman_string_for_valid_input)
+{
+    int iRetVal = SUCCESS;
+    char acNum[MAX_LEN] = {0};
+
+    iRetVal = convert_to_roman_string(10, acNum);
+    ck_assert_int_eq(iRetVal, SUCCESS);
+    ck_assert_str_eq(acNum, "X");
+
+    iRetVal = convert_to_roman_string(1666, acNum);
+    ck_assert_int_eq(iRetVal, SUCCESS);
+    ck_assert_str_eq(acNum, "MDCLXVI");
+
+    iRetVal = convert_to_roman_string(1444, acNum);
+    ck_assert_int_eq(iRetVal, SUCCESS);
+    ck_assert_str_eq(acNum, "MCDXLIV");
+
+}
+END_TEST
+
 Suite * calculate_suite(void)
 {
     Suite * s;
@@ -238,6 +259,7 @@ Suite * calculate_suite(void)
     //tcase_add_test(tc_core, test_find_occurances_and_subtract_on_passing_a_valid_string);
 
     tcase_add_test(tc_core, test_convert_to_roman_string_for_invalid_and_out_of_bounds_input);
+    tcase_add_test(tc_core, test_convert_to_roman_string_for_valid_input);
 
     suite_add_tcase(s, tc_core);
 
