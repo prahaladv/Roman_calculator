@@ -159,6 +159,31 @@ int convert_to_roman_string(int iNum, char * pcNum)
         return iRetVal;
     }
 
+    int num = iNum, thou = 0, hund = 0, ten = 0, one = 0;
+    char * thousandth[5] = {"", "M", "MM", "MMM", "MMMM"};
+    char * hundredth[10] = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
+    char * tenth[10] = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+    char * ones[10] = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+
+    thou = num / 1000;
+    if(thou > 4)
+    {
+        iRetVal = OUT_OF_BOUNDS;
+        return iRetVal;
+    }
+
+    num -= (thou * 1000);
+    hund = num / 100;
+    num -= (hund * 100);
+    ten = num / 10;
+    num -= (ten * 10);
+    one = num % 10;
+
+    strcat(pcNum, thousandth[thou]);
+    strcat(pcNum, hundredth[hund]);
+    strcat(pcNum, tenth[ten]);
+    strcat(pcNum, ones[one]);
+
     return iRetVal;
 }
 

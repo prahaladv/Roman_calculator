@@ -222,10 +222,12 @@ START_TEST(test_convert_to_roman_string_for_valid_input)
     iRetVal = convert_to_roman_string(10, acNum);
     ck_assert_int_eq(iRetVal, SUCCESS);
     ck_assert_str_eq(acNum, "X");
+    acNum[0] = '\0';
 
     iRetVal = convert_to_roman_string(1666, acNum);
     ck_assert_int_eq(iRetVal, SUCCESS);
     ck_assert_str_eq(acNum, "MDCLXVI");
+    acNum[0] = '\0';
 
     iRetVal = convert_to_roman_string(1444, acNum);
     ck_assert_int_eq(iRetVal, SUCCESS);
