@@ -202,7 +202,7 @@ START_TEST(test_convert_to_roman_string_for_invalid_and_out_of_bounds_input)
     int iRetVal = SUCCESS;
     char acNum[MAX_LEN] = {0};
 
-    iRetVal = convert_to_roman_string(NULL, acNum);
+    iRetVal = convert_to_roman_string(10, NULL);
     ck_assert_int_eq(iRetVal, INVALID_INPUT);
 
     iRetVal = convert_to_roman_string(-10, acNum);

@@ -145,10 +145,21 @@ int find_value_of_string(char * acNum, int * piVal)
 
 int convert_to_roman_string(int iNum, char * pcNum)
 {
-    if(iNum == 2)
-        strcpy(pcNum, "II");
+    int iRetVal = SUCCESS;
 
-    return SUCCESS;
+    if(pcNum == NULL)
+    {
+        iRetVal = INVALID_INPUT;
+        return iRetVal;
+    }
+
+    if(iNum < 0 || iNum > MAX_VAL)
+    {
+        iRetVal = OUT_OF_BOUNDS;
+        return iRetVal;
+    }
+
+    return iRetVal;
 }
 
 int calculate_sum(char * pcNum1, char * pcNum2, char * pcSum)

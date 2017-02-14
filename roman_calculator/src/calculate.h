@@ -11,6 +11,7 @@
 #define INVALID_INPUT 6
 
 #define MAX_LEN 40
+#define MAX_VAL 4999
 
 int calculate_sum(char * pcNum1, char * pcNum2, char * pcSum);
 int check_if_roman_string(char * pcStr);
