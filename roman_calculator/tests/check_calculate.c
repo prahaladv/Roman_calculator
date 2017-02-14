@@ -232,7 +232,19 @@ START_TEST(test_convert_to_roman_string_for_valid_input)
     iRetVal = convert_to_roman_string(1444, acNum);
     ck_assert_int_eq(iRetVal, SUCCESS);
     ck_assert_str_eq(acNum, "MCDXLIV");
+}
+END_TEST
 
+/* Test 15 */
+START_TEST(test_find_value_of_string_for_invalid_roman_input)
+{
+    int iRetVal = SUCCESS;
+    int iValue = 0;
+
+    iRetVal = find_value_of_string("DMLCV", &iValue);
+
+    ck_assert_int_eq(iRetVal, INVALID_INPUT);
+    ck_assert_int_eq(iValue, -1);
 }
 END_TEST
 
@@ -260,8 +272,10 @@ Suite * calculate_suite(void)
     //tcase_add_test(tc_core, test_find_occurances_and_subtract_on_passing_a_valid_string_with_IX);
     //tcase_add_test(tc_core, test_find_occurances_and_subtract_on_passing_a_valid_string);
 
-    tcase_add_test(tc_core, test_convert_to_roman_string_for_invalid_and_out_of_bounds_input);
-    tcase_add_test(tc_core, test_convert_to_roman_string_for_valid_input);
+    //tcase_add_test(tc_core, test_convert_to_roman_string_for_invalid_and_out_of_bounds_input);
+    //tcase_add_test(tc_core, test_convert_to_roman_string_for_valid_input);
+
+    tcase_add_test(tc_core, test_find_value_of_string_for_invalid_roman_input);
 
     suite_add_tcase(s, tc_core);
 
