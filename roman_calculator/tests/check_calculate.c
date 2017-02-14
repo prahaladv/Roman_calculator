@@ -261,24 +261,24 @@ Suite * calculate_suite(void)
     /* Core test case */
     tc_core = tcase_create("Core");
 
-    //tcase_add_test(tc_core, test_calculate_diff);
-    //tcase_add_test(tc_core, test_calculate_negative_diff);
+    tcase_add_test(tc_core, test_calculate_diff);
+    tcase_add_test(tc_core, test_calculate_negative_diff);
 
-    //tcase_add_test(tc_core, test_check_if_roman_string_fails_if_passed_null);
-    //tcase_add_test(tc_core, test_check_if_roman_string_fails_if_passed_random_string);
+    tcase_add_test(tc_core, test_check_if_roman_string_fails_if_passed_null);
+    tcase_add_test(tc_core, test_check_if_roman_string_fails_if_passed_random_string);
 
-    //tcase_add_test(tc_core, test_value_of_string_fails_if_passed_null);
-    //tcase_add_test(tc_core, test_value_of_string_fails_if_passed_empty_string);
-    //tcase_add_test(tc_core, test_value_of_string_fails_if_passed_null_int_pointer);
+    tcase_add_test(tc_core, test_value_of_string_fails_if_passed_null);
+    tcase_add_test(tc_core, test_value_of_string_fails_if_passed_empty_string);
+    tcase_add_test(tc_core, test_value_of_string_fails_if_passed_null_int_pointer);
 
-    //tcase_add_test(tc_core, test_value_of_string_on_passing_a_valid_string_without_subtractibles);
-    //tcase_add_test(tc_core, test_value_of_string_on_passing_a_valid_string_with_subtractibles);
+    tcase_add_test(tc_core, test_value_of_string_on_passing_a_valid_string_without_subtractibles);
+    tcase_add_test(tc_core, test_value_of_string_on_passing_a_valid_string_with_subtractibles);
 
     //tcase_add_test(tc_core, test_find_occurances_and_subtract_on_passing_a_valid_string_with_IX);
-    //tcase_add_test(tc_core, test_find_occurances_and_subtract_on_passing_a_valid_string);
+    tcase_add_test(tc_core, test_find_occurances_and_subtract_on_passing_a_valid_string);
 
-    //tcase_add_test(tc_core, test_convert_to_roman_string_for_invalid_and_out_of_bounds_input);
-    //tcase_add_test(tc_core, test_convert_to_roman_string_for_valid_input);
+    tcase_add_test(tc_core, test_convert_to_roman_string_for_invalid_and_out_of_bounds_input);
+    tcase_add_test(tc_core, test_convert_to_roman_string_for_valid_input);
 
     tcase_add_test(tc_core, test_find_value_of_string_for_invalid_roman_input);
 

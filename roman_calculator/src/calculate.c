@@ -17,20 +17,26 @@ int check_if_roman_string(char * pcStr)
 {
     int iRetVal = SUCCESS;
 
+    /* TEST 4 */
+    /* If the passed inputs are invalid */
     if(pcStr == NULL || !strcmp(pcStr, ""))
     {
         iRetVal = INVALID_INPUT;
         return iRetVal;
     }
 
+    /* TEST 5 */
     int i = 0, iLen = strlen(pcStr);
 
+    /* If the string contains more than 4 Ms, exit */
     if(strstr(pcStr, "MMMMM") != NULL)
     {
         iRetVal = INVALID_INPUT;
         return iRetVal;
     }
 
+    /* Iterate through the string and check if the character is non-Roman. If
+     * yes, exit saying it's invalid */
     for(i = 0; i < iLen; i++)
     {
         if(pcStr[i] != 'I' && pcStr[i] != 'V' && pcStr[i] != 'X' && pcStr[i] != 'L' &&
@@ -47,6 +53,7 @@ int find_occurances_and_subtract(char * s, char * subtractible, int * sum)
 {
     int iRetVal = SUCCESS;
 
+    /* If the input is invalid */
     if(s == NULL || !strcmp(s, "") || subtractible == NULL ||
             !strcmp(subtractible, "") || sum == NULL)
     {
@@ -57,8 +64,10 @@ int find_occurances_and_subtract(char * s, char * subtractible, int * sum)
     int iLen = strlen(s), sub = 0;
     char acStr[iLen + 1], * pcPtr = acStr;
 
+    /* TEST 11 */
     strcpy(acStr, s);
 
+    /* Decide the subtractible value based on what is passed */
     if( (strcmp(subtractible, "IV") == 0) || (strcmp(subtractible, "IX") == 0) )
         sub = 2;
     else if( (strcmp(subtractible, "XL") == 0) || (strcmp(subtractible, "XC") == 0) )
@@ -66,6 +75,9 @@ int find_occurances_and_subtract(char * s, char * subtractible, int * sum)
     else if( (strcmp(subtractible, "CD") == 0) || (strcmp(subtractible, "CM") == 0) )
         sub = 200;
 
+    /* TEST 12 */
+    /* Repeated check for the presence of the subtractible until NULL or ""
+     * is encountered */
     while(pcPtr != NULL)
     {
         if(!strcmp(pcPtr, ""))
@@ -87,6 +99,8 @@ int find_value_of_string(char * acNum, int * piVal)
     int iRetVal = SUCCESS;
     char acVerifier[MAX_LEN] = {0};
 
+    /* TEST 6, 7 and 8 */
+    /* In case of invalid inputs */
     if(acNum == NULL || !strcmp(acNum, "") || piVal == NULL)
     {
         if(piVal != NULL)
@@ -95,8 +109,10 @@ int find_value_of_string(char * acNum, int * piVal)
         return iRetVal;
     }
 
+    /* TEST 9 */
     int i = 0, iLen = strlen(acNum), iRes = 0;
 
+    /* Iterate through the string and just add the respective values */
     for(i = 0; i < iLen; i++)
     {
         if(acNum[i] == 'M')
@@ -129,6 +145,7 @@ int find_value_of_string(char * acNum, int * piVal)
      * Similarly if it is XC, simple summing would have yeilded 110 but it is
      * 90. */
 
+    /* TEST 10 */
     for(i = 0; i < 6; i++)
     {
         iRetVal = find_occurances_and_subtract(acNum, subtractibles[i], &iRes);
@@ -139,6 +156,12 @@ int find_value_of_string(char * acNum, int * piVal)
         }
     }
 
+    /* To check if the passed string is actually a valid one or not.
+     * We find the value and convert it back to Roman string for verification.
+     * If the passed string is valid, it would be the same as
+      that we obtained by converting the value to Roman string. */
+
+    /* TEST 15 */
     iRetVal = convert_to_roman_string(iRes, acVerifier);
     if(iRetVal != SUCCESS)
     {
@@ -163,24 +186,31 @@ int convert_to_roman_string(int iNum, char * pcNum)
 {
     int iRetVal = SUCCESS;
 
+    /* TEST 13 */
+    /* If no destination pointer is sent */
     if(pcNum == NULL)
     {
         iRetVal = INVALID_INPUT;
         return iRetVal;
     }
 
+    /* If the passed number is out of bounds */
     if(iNum < 0 || iNum > MAX_VAL)
     {
         iRetVal = OUT_OF_BOUNDS;
         return iRetVal;
     }
 
+    /* TEST 14 */
     int num = iNum, thou = 0, hund = 0, ten = 0, one = 0;
+    /* Used to compute the Roman equivalent of each digit as per their place
+     * value */
     char * thousandth[5] = {"", "M", "MM", "MMM", "MMMM"};
     char * hundredth[10] = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
     char * tenth[10] = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
     char * ones[10] = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
 
+    /* thou, hund, ten, and one contain the digit values in the number */
     thou = num / 1000;
     if(thou > 4)
     {
@@ -195,6 +225,8 @@ int convert_to_roman_string(int iNum, char * pcNum)
     num -= (ten * 10);
     one = num % 10;
 
+    /* Indexing various arrays and fetching the Roman equivalent string based
+     * on the digit values we obtained from the number */
     strcat(pcNum, thousandth[thou]);
     strcat(pcNum, hundredth[hund]);
     strcat(pcNum, tenth[ten]);
@@ -205,6 +237,7 @@ int convert_to_roman_string(int iNum, char * pcNum)
 
 int calculate_sum(char * pcNum1, char * pcNum2, char * pcSum)
 {
+    /* TEST 1 */
     int iLen1 = strlen(pcNum1), iLen2 = strlen(pcNum2);
     char acNum1[iLen1 + 1];
     char acNum2[iLen2 + 1];
@@ -248,6 +281,7 @@ int calculate_sum(char * pcNum1, char * pcNum2, char * pcSum)
 
     printf("\nSum : %d\n", iSum);
 
+    /* The number is converted back to a Roman string */
     iRetVal = convert_to_roman_string(iSum, pcSum);
 
     return iRetVal;
@@ -255,6 +289,7 @@ int calculate_sum(char * pcNum1, char * pcNum2, char * pcSum)
 
 int calculate_diff(char * pcNum1, char * pcNum2, char * pcDiff)
 {
+    /* TEST 2 */
     int iLen1 = strlen(pcNum1), iLen2 = strlen(pcNum2);
     char acNum1[iLen1 + 1];
     char acNum2[iLen2 + 1];
@@ -294,16 +329,22 @@ int calculate_diff(char * pcNum1, char * pcNum2, char * pcDiff)
 
     printf("\nNumber 1 : %d, Number 2: %d\n", iNum1, iNum2);
 
+    /* TEST 2 and 3 */
     iDiff = abs(iNum1 - iNum2);
 
     printf("\nDifference: %d\n", iDiff);
 
+    /* The number is converted back to a Roman string */
     iRetVal = convert_to_roman_string(iDiff, pcDiff);
     if(iRetVal != SUCCESS)
     {
         return iRetVal;
     }
 
+    /* If the first value is smaller than the second, the return value is
+     * NEGATIVE_DIFFERENCE */
+
+    /* TEST 3 */
     if(iNum1 < iNum2)
     {
         iRetVal = NEGATIVE_DIFFERENCE;
