@@ -1,5 +1,5 @@
 # Roman_calculator
-This "Roman_calculator" repo is for the autonomous vehicle opportunity challenge.
+This "Roman_calculator" takes in two Roman number strings and performs its addition and subtraction The output is also Roman strings.
 
 ### How to compile the codebase?
 1. Set the present working directory to: path-to/Roman-calculator/roman-calculator/
